@@ -1,0 +1,38 @@
+{
+  "name": "Animovi.com",
+  "short_name": "Animovi",
+  "start_url": "https://www.animovi.com/?m=1",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#ff0000",
+  "description": "Animovi.com tempat untuk nonton anime, dorama, drakor, movie online subtitle Indonesia yang dapat diakses dari smartphone, laptop, dan PC.",
+  "icons": [{
+    "src": "https://2.bp.blogspot.com/-1an7yk8XUjQ/W4prML40fAI/AAAAAAAAACU/U1Rzg8b6Eqog4Y4AvwkOE_jWBeZor-YBACLcBGAs/s48/favicon-animovi.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+    "src": "https://2.bp.blogspot.com/-1an7yk8XUjQ/W4prML40fAI/AAAAAAAAACU/U1Rzg8b6Eqog4Y4AvwkOE_jWBeZor-YBACLcBGAs/s72/favicon-animovi.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "https://2.bp.blogspot.com/-1an7yk8XUjQ/W4prML40fAI/AAAAAAAAACU/U1Rzg8b6Eqog4Y4AvwkOE_jWBeZor-YBACLcBGAs/s96/favicon-animovi.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "https://2.bp.blogspot.com/-1an7yk8XUjQ/W4prML40fAI/AAAAAAAAACU/U1Rzg8b6Eqog4Y4AvwkOE_jWBeZor-YBACLcBGAs/s144/favicon-animovi.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "https://2.bp.blogspot.com/-1an7yk8XUjQ/W4prML40fAI/AAAAAAAAACU/U1Rzg8b6Eqog4Y4AvwkOE_jWBeZor-YBACLcBGAs/s168/favicon-animovi.png",
+    "sizes": "168x168",
+    "type": "image/png"
+  }, {
+    "src": "https://2.bp.blogspot.com/-1an7yk8XUjQ/W4prML40fAI/AAAAAAAAACU/U1Rzg8b6Eqog4Y4AvwkOE_jWBeZor-YBACLcBGAs/s192/favicon-animovi.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "https://2.bp.blogspot.com/-1an7yk8XUjQ/W4prML40fAI/AAAAAAAAACU/U1Rzg8b6Eqog4Y4AvwkOE_jWBeZor-YBACLcBGAs/s512/favicon-animovi.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

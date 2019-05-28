@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<meta content='width=device-width,minimum-scale=1,initial-scale=1' name='viewport'/>
+<title>Untitled Document</title>
+<style>
+body{background:#ccc;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;color:#555;}
+*{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+.content-wrapper{width:100%;max-width:960px;margin:0 auto;padding:0;background:#f2f2f2;}
+.header {
+	background: #033;
+	padding: 20px 0 0;
+	line-height: 55px;
+	width: 100%;
+	position: -webkit-sticky;
+	position: sticky;
+	top: -20px;
+	margin: 0;
+	z-index: 9999
+}
+.bottom-head {
+	width: 100%;
+	height: 21px;
+	margin-top: -1px;
+	background: #033;
+}
+header .content-wrapper{background:0 0;padding:0 20px;}
+header h1{float:left;margin:0 40px 0 0;width:210px;color:#fff;height:55px;line-height:55px;}
+.content{width:calc(100% - 300px);margin:0;padding:20px 20px 0;background:#fff;float:left}
+.content h2{margin:0 0 20px;padding:0;font-size:28px;text-align:center;text-transform:capitalize;}
+.content .in{position:relative;padding:30px 20px 0 0;float:left}
+.content p{margin:0 0 20px;padding:0;font-size:16px;}
+footer .content-wrapper{background:#666;color:#CCC;text-align:center;padding:10px 20px;font-size:90%;}
+.clear{display:block;clear:both;}
+.sidebar{width:300px;padding:20px;float:left}
+.sidebar h2{font-size:20px;padding:0;margin:0 0 20px}
+.sidebar ul{margin:0 0 20px;padding:0 0 0 20px}
+.sidebar li{margin:0 0 10px;padding:0}
+.sidebar li a{display:block;text-decoration:none}
+input.check-sidebar{position:fixed;top:-100px;opacity:0}
+.toggle-label-sidebar{position: -webkit-sticky;position:sticky;top:70px;z-index:16;margin-right:-30px;margin-top:-40px;font-size:12px;color:#fff;cursor:pointer;display:flex;align-items:center;float:right}
+.toggle-label-sidebar:focus,.toggle-label-sidebar:active{outline:0}
+.toggle-label-icon,.toggle-label-title{display:flex;align-items:center;box-shadow:0 10px 20px -5px rgba(0,0,0,.25);background:#2B0C93;border-radius:4px;height:28px;padding:5px}
+.toggle-label-title{border-radius:4px 0 0 4px;margin-right:-5px;padding-right:10px}
+.toggle-label-sidebar svg{vertical-align:middle}
+input.check-sidebar:checked~.sidebar{display:none}
+input.check-sidebar:checked~.content{width:100%}
+input.check-sidebar:checked~.content .in .toggle-label-sidebar svg{transform:rotate(180deg)}
+.menu-kompiajaib{float:left;width:calc(100% - 250px);display: flex;}
+.menu-kompiajaib .menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 18px;
+}
+.menu-kompiajaib .menu .btn-menu {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: 0 0;
+	color: #fff;
+	font-size: 16px;
+	text-decoration: none;
+	font-weight: 700;
+	line-height: 55px;
+	cursor: pointer;
+}
+.menu-kompiajaib .menu .btn-menu:focus,
+.menu-kompiajaib .menu .btn-menu:active,
+.open-menu:focus,
+.open-menu:active {
+	outline: none;
+}
+.menu-kompiajaib .menu .btn-menu .arrow-menu {
+    display: flex;
+    margin-left: 5px;
+    box-sizing: initial;
+    justify-content: center;
+}
+.menu-kompiajaib .menu .btn-menu .arrow-menu svg {
+    width: 15px;
+    height: 15px;
+	vertical-align: middle;
+}
+.menu-kompiajaib .menu .btn-menu .arrow-menu svg path {
+    fill: #fff;
+}
+.menu-kompiajaib .menu .sub-menu {
+    box-shadow: 0 10px 25px 0 rgba(0,0,0,.2);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    padding: 8px 0;
+    pointer-events: none;
+    opacity: 0;
+    list-style: none;
+    background: #fff;
+    border-radius: 0 0 4px 4px;
+    transition: opacity .2s cubic-bezier(.25,.1,.25,1);
+}
+.menu-kompiajaib .menu .sub-menu li {
+    position: relative;
+    width: 180px;
+}
+.menu-kompiajaib .menu .sub-menu li a {
+    padding: 8px 15px;
+	font-weight: 700;
+	font-size: 16px;
+	color: #555;
+	display: block;
+	text-decoration: none;
+	line-height: 1;
+}
+.menu-kompiajaib .menu .btn-menu:hover~.sub-menu, .menu-kompiajaib .menu .btn-menu:focus~.sub-menu, .menu-kompiajaib .menu .sub-menu:hover, .menu-kompiajaib .menu .sub-menu:focus-within {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity .2s cubic-bezier(.25,.1,.25,1);
+	visibility: visible;
+}
+.menu-kompiajaib .menu .btn-menu:hover, .menu-kompiajaib .menu .sub-menu li a:hover {
+	color: #39F
+}
+input.check-menu {
+	position: fixed;
+	top: -100px;
+	opacity: 0
+}
+.open-menu,.mobile {
+	display: none;
+	visibility: hidden;
+}
+@media screen and (max-width:960px){
+	.menu-kompiajaib {
+		display: none;
+	}
+	.open-menu {
+		display: block;
+		visibility: visible;
+		float: right;
+		line-height: 55px;
+		margin: 0;
+		padding: 0 10px;
+		cursor: pointer;
+	}
+	.open-menu.mobile {
+		position: absolute;
+		top: 0;
+		right: 10px;
+		z-index: 2
+	}
+	.open-menu.mobile svg path {
+		fill: #333;
+	}
+	.open-menu svg {
+		vertical-align: middle;
+	}
+	.open-menu svg path {
+		fill: #fff;
+	}
+	input.check-menu:checked~.menu-kompiajaib {
+	    display: block;
+    	width: 100%;
+    	background: #fff;
+    	position: fixed;
+    	top: 0;
+    	left: 0;
+    	height: 100vh;
+    	overflow-y: visible;
+		padding-top: 10px;
+		scrollbar-width: none;
+		-webkit-animation-name: slideInLeft;
+  		animation-name: slideInLeft;
+  		-webkit-animation-duration: 1s;
+  		animation-duration: 1s;
+  		-webkit-animation-fill-mode: both;
+  		animation-fill-mode: both;
+		z-index: 999;
+	}
+	input.check-menu:checked~.menu-kompiajaib::-webkit-scrollbar {
+		display: none
+	}
+	input.check-menu:checked~.menu-kompiajaib .menu {
+    	position: relative;
+    	align-items: unset;
+    	margin: 0 18px;
+    	display: block;
+    	text-align: left;
+		z-index: 1
+	}
+	input.check-menu:checked~.menu-kompiajaib .btn-menu {
+		align-items: unset;
+		display: block;
+    	color: #333;
+    	line-height: 35px;
+    	width: 100%;
+    	text-align: left;
+	}
+	input.check-menu:checked~.menu-kompiajaib .menu .btn-menu .arrow-menu {
+		display: inline;
+	}
+	input.check-menu:checked~.menu-kompiajaib .menu .btn-menu .arrow-menu svg path {
+		fill: #333;
+	}
+	.menu-kompiajaib .menu .btn-menu:hover~.sub-menu, .menu-kompiajaib .menu .btn-menu:focus~.sub-menu, .menu-kompiajaib .menu .sub-menu:hover, .menu-kompiajaib .menu .sub-menu:focus-within {
+		position: relative;
+		padding-top: 0;
+		box-shadow: none;
+	}
+  	@-webkit-keyframes slideInLeft {
+  		0% {
+  		-webkit-transform: translateX(-100%);
+  		transform: translateX(-100%);
+  		visibility: visible;
+  	}
+  		100% {
+  		-webkit-transform: translateX(0);
+  		transform: translateX(0);
+  	}
+  	}
+  	@keyframes slideInLeft {
+  		0% {
+  		-webkit-transform: translateX(-100%);
+  		transform: translateX(-100%);
+  		visibility: visible;
+  	}
+  		100% {
+  		-webkit-transform: translateX(0);
+  		transform: translateX(0);
+  	}
+  	} 
+	
+	.content, .sidebar {
+		width: 100%;
+	}
+	.toggle-label-sidebar {
+		display: none;
+	}
+	.content .in {
+		padding: 0;
+	}
+}
+img{width: auto;max-width: 100%;height: auto;border: none;margin: 0 auto;}
+.sidebar .lazyloadimg{margin-bottom: 20px}
+</style>
+</head>
+
+<body>
+<header class="header" role="banner">
+<div class='content-wrapper'>
+<h1>HEADER BLOG</h1>
+<input class='check-menu' hidden='' id='check-menu' name='checkmenu' type='checkbox'/>
+<label class='open-menu' for='check-menu' aria-label='Open Menu' tabindex='0'><svg width="24" height="24" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg></label>
+<nav class="menu-kompiajaib">
+<label class='open-menu mobile' for='check-menu' aria-label='Open Menu' tabindex='0'><svg width="24" height="24" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg></label>
+  <div class="menu">
+  <button class="btn-menu">Menu 1<div class="arrow-menu"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg></div></button>
+    <ul class="sub-menu">
+      <li><a href="#">Sub Menu 1</a></li>
+      <li><a href="#">Sub Menu 2</a></li>
+      <li><a href="#">Sub Menu 3</a></li>
+      <li><a href="#">Sub Menu 4</a></li>
+    </ul>
+  </div>
+  <div class="menu">
+  <button class="btn-menu">Menu 2<div class="arrow-menu"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg></div></button>
+    <ul class="sub-menu">
+      <li><a href="#">Sub Menu 1</a></li>
+      <li><a href="#">Sub Menu 2</a></li>
+      <li><a href="#">Sub Menu 3</a></li>
+      <li><a href="#">Sub Menu 4</a></li>
+    </ul>
+  </div>
+  <div class="menu">
+  <button class="btn-menu">Menu 3<div class="arrow-menu"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg></div></button>
+    <ul class="sub-menu">
+      <li><a href="#">Sub Menu 1</a></li>
+      <li><a href="#">Sub Menu 2</a></li>
+      <li><a href="#">Sub Menu 3</a></li>
+      <li><a href="#">Sub Menu 4</a></li>
+    </ul>
+  </div>
+  <div class="menu">
+  <button class="btn-menu">Menu 4<div class="arrow-menu"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg></div></button>
+    <ul class="sub-menu">
+      <li><a href="#">Sub Menu 1</a></li>
+      <li><a href="#">Sub Menu 2</a></li>
+      <li><a href="#">Sub Menu 3</a></li>
+      <li><a href="#">Sub Menu 4</a></li>
+    </ul>
+  </div>
+  <div class="menu"><a class="btn-menu" href="#">Menu 5</a></div>
+  <div class="menu"><a class="btn-menu" href="#">Menu 6</a></div>
+</nav>
+<div class="clear"></div>
+</div>
+</header>
+<div class="clear"></div>
+<div class="bottom-head"></div>
+<div class='content-wrapper'>
+<input class='check-sidebar' hidden='' id='check-sidebar' name='checksidebar' type='checkbox'/>
+<div class='content'>
+<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+<div class="in">
+<label class='toggle-label-sidebar' for='check-sidebar' role='toggle-sidebar' tabindex='0'>
+<span class='toggle-label-title' id='toggle-label-title'>Toggle Sidebar</span>
+<span class='toggle-label-icon'><svg height='18' viewBox='0 0 24 24' width='18'><path d='M12.08,4.08L20,12L12.08,19.92L10.67,18.5L16.17,13H2V11H16.17L10.67,5.5L12.08,4.08M20,12V22H22V2H20V12Z' fill='#fff'/></svg></span></label>
+<div class="post">
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper, erat sit amet tincidunt euismod, massa mauris posuere dui, sed vulputate nisi lorem vel sem. Morbi in rutrum ligula, in pharetra nibh. Curabitur condimentum diam vitae interdum bibendum. Maecenas risus mi, vulputate eu condimentum non, tincidunt quis ligula. Proin vitae finibus felis. Sed et condimentum mi. Nullam nisl dolor, mollis sit amet risus eget, fermentum pharetra dui. Pellentesque nec nulla massa. Cras ultricies, mi ac laoreet lobortis, dolor enim convallis lacus, vitae condimentum eros neque eget lorem.
+</p>
+<div class="lazyloadimg">
+<!-- <picture>
+ <source srcset='https://4.bp.blogspot.com/-1IXM0nq9Y-c/VlkMYmQsRII/AAAAAAAAj38/27BU80myUrM/s1600-rw/atelier-reseau-internet-monde.jpg' type='image/webp'/>
+  <source srcset='https://4.bp.blogspot.com/-1IXM0nq9Y-c/VlkMYmQsRII/AAAAAAAAj38/27BU80myUrM/s1600/atelier-reseau-internet-monde.jpg' type='image/jpg'/>
+  <img alt='Test Postingan' height='398' src='https://4.bp.blogspot.com/-1IXM0nq9Y-c/VlkMYmQsRII/AAAAAAAAj38/27BU80myUrM/s1600/atelier-reseau-internet-monde.jpg' title='Test Postingan' width='600'/>
+  </picture> -->
+</div>
+<br />
+<p>
+Morbi pellentesque dolor id augue molestie, tristique venenatis ante congue. Cras dignissim sem eu ipsum euismod, sit amet bibendum leo sollicitudin. Fusce in est sit amet libero tincidunt tempus. Quisque gravida dui sit amet nulla aliquam fermentum. Integer non ante at augue malesuada consequat at a sem. Maecenas sed tortor hendrerit, ullamcorper enim sit amet, facilisis purus. Nulla lacinia in neque egestas lobortis. In hac habitasse platea dictumst. Vivamus feugiat mattis felis congue mollis. Cras sit amet velit ante. Aenean at sodales felis. Aenean at imperdiet tortor. Quisque ullamcorper tortor nec augue mattis, a varius arcu suscipit. Donec suscipit, mi sit amet faucibus lacinia, dui ex ultricies risus, ut rhoncus mauris turpis ut neque.
+</p>
+<p>
+Pellentesque accumsan porttitor lorem sed gravida. Nullam egestas porta scelerisque. Aenean eros risus, pharetra eget ex nec, eleifend condimentum magna. Quisque tempor placerat dolor, in finibus quam facilisis interdum. Integer vestibulum sapien purus, eu pretium enim egestas id. Nam viverra interdum urna, vitae eleifend est dignissim imperdiet. Vestibulum eu congue neque. Curabitur bibendum venenatis risus vitae sodales. Vivamus tincidunt massa purus, id finibus eros maximus id. Nunc pulvinar blandit feugiat. Fusce porttitor ornare orci sit amet condimentum. Curabitur elit augue, sagittis ac nisi sit amet, luctus eleifend quam. Cras ultrices non risus id euismod.
+</p>
+<div class="lazyloadimg">
+<!-- <picture>
+ <source srcset='https://3.bp.blogspot.com/-yXaRVSYV45E/WgWOQZ6gcyI/AAAAAAAAt4w/OK-g1RYUEsooN54D20pr_hDPdc13HNRKQCLcBGAs/s1600-rw/Screenshot_101.png' type='image/webp'/>
+  <source srcset='https://3.bp.blogspot.com/-yXaRVSYV45E/WgWOQZ6gcyI/AAAAAAAAt4w/OK-g1RYUEsooN54D20pr_hDPdc13HNRKQCLcBGAs/s1600/Screenshot_101.png' type='image/jpg'/>
+  <img alt='Test Postingan' height='358' src='https://3.bp.blogspot.com/-yXaRVSYV45E/WgWOQZ6gcyI/AAAAAAAAt4w/OK-g1RYUEsooN54D20pr_hDPdc13HNRKQCLcBGAs/s1600/Screenshot_101.png' title='Test Postingan' width='628'/>
+  </picture> -->
+</div>
+<br />
+<p>
+Duis ut auctor ipsum. Vivamus a metus porttitor, euismod lectus ultricies, lobortis felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec lobortis turpis. Etiam auctor, sapien ac hendrerit pharetra, lorem risus ultricies dolor, at facilisis metus sem a sem. Pellentesque fermentum, velit id euismod ornare, justo arcu tristique ligula, a tempor libero elit sed elit. Praesent non faucibus dui. Nam semper laoreet tellus et tempus. Nunc velit tortor, dignissim non enim at, finibus dignissim dui. Duis convallis a metus ac facilisis. Aliquam et nunc eget ante convallis bibendum.
+</p>
+<p>
+Fusce tincidunt orci quis suscipit consectetur. Nunc suscipit eget quam non sollicitudin. Mauris eu nibh massa. Aliquam eu condimentum sapien. In ante nibh, sodales vitae euismod at, ornare non est. Sed sed placerat velit. Quisque vulputate eget dui quis condimentum. Nunc viverra, diam at iaculis dictum, purus leo dictum purus, quis tempus nisi neque in purus. Suspendisse in molestie enim, vitae fermentum dui.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper, erat sit amet tincidunt euismod, massa mauris posuere dui, sed vulputate nisi lorem vel sem. Morbi in rutrum ligula, in pharetra nibh. Curabitur condimentum diam vitae interdum bibendum. Maecenas risus mi, vulputate eu condimentum non, tincidunt quis ligula. Proin vitae finibus felis. Sed et condimentum mi. Nullam nisl dolor, mollis sit amet risus eget, fermentum pharetra dui. Pellentesque nec nulla massa. Cras ultricies, mi ac laoreet lobortis, dolor enim convallis lacus, vitae condimentum eros neque eget lorem.
+</p>
+<div class="lazyloadimg">
+<!-- <picture>
+ <source srcset='https://3.bp.blogspot.com/-EHqSlE0dhF8/Wtw5sb0LLSI/AAAAAAAAxFY/3l-fKXys1cos85hEDllbJh89kf-Fn1x5QCLcBGAs/s1600-rw/google-photos.jpg' type='image/webp'/>
+  <source srcset='https://3.bp.blogspot.com/-EHqSlE0dhF8/Wtw5sb0LLSI/AAAAAAAAxFY/3l-fKXys1cos85hEDllbJh89kf-Fn1x5QCLcBGAs/s1600/google-photos.jpg' type='image/jpg'/>
+  <img alt='Test Postingan' height='600' src='https://3.bp.blogspot.com/-EHqSlE0dhF8/Wtw5sb0LLSI/AAAAAAAAxFY/3l-fKXys1cos85hEDllbJh89kf-Fn1x5QCLcBGAs/s1600/google-photos.jpg' title='Test Postingan' width='1000'/>
+  </picture> -->
+</div>
+<br />
+<p>
+Morbi pellentesque dolor id augue molestie, tristique venenatis ante congue. Cras dignissim sem eu ipsum euismod, sit amet bibendum leo sollicitudin. Fusce in est sit amet libero tincidunt tempus. Quisque gravida dui sit amet nulla aliquam fermentum. Integer non ante at augue malesuada consequat at a sem. Maecenas sed tortor hendrerit, ullamcorper enim sit amet, facilisis purus. Nulla lacinia in neque egestas lobortis. In hac habitasse platea dictumst. Vivamus feugiat mattis felis congue mollis. Cras sit amet velit ante. Aenean at sodales felis. Aenean at imperdiet tortor. Quisque ullamcorper tortor nec augue mattis, a varius arcu suscipit. Donec suscipit, mi sit amet faucibus lacinia, dui ex ultricies risus, ut rhoncus mauris turpis ut neque.
+</p>
+<p>
+Pellentesque accumsan porttitor lorem sed gravida. Nullam egestas porta scelerisque. Aenean eros risus, pharetra eget ex nec, eleifend condimentum magna. Quisque tempor placerat dolor, in finibus quam facilisis interdum. Integer vestibulum sapien purus, eu pretium enim egestas id. Nam viverra interdum urna, vitae eleifend est dignissim imperdiet. Vestibulum eu congue neque. Curabitur bibendum venenatis risus vitae sodales. Vivamus tincidunt massa purus, id finibus eros maximus id. Nunc pulvinar blandit feugiat. Fusce porttitor ornare orci sit amet condimentum. Curabitur elit augue, sagittis ac nisi sit amet, luctus eleifend quam. Cras ultrices non risus id euismod.
+</p>
+<p>
+Duis ut auctor ipsum. Vivamus a metus porttitor, euismod lectus ultricies, lobortis felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec lobortis turpis. Etiam auctor, sapien ac hendrerit pharetra, lorem risus ultricies dolor, at facilisis metus sem a sem. Pellentesque fermentum, velit id euismod ornare, justo arcu tristique ligula, a tempor libero elit sed elit. Praesent non faucibus dui. Nam semper laoreet tellus et tempus. Nunc velit tortor, dignissim non enim at, finibus dignissim dui. Duis convallis a metus ac facilisis. Aliquam et nunc eget ante convallis bibendum.
+</p>
+<p>
+Fusce tincidunt orci quis suscipit consectetur. Nunc suscipit eget quam non sollicitudin. Mauris eu nibh massa. Aliquam eu condimentum sapien. In ante nibh, sodales vitae euismod at, ornare non est. Sed sed placerat velit. Quisque vulputate eget dui quis condimentum. Nunc viverra, diam at iaculis dictum, purus leo dictum purus, quis tempus nisi neque in purus. Suspendisse in molestie enim, vitae fermentum dui.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper, erat sit amet tincidunt euismod, massa mauris posuere dui, sed vulputate nisi lorem vel sem. Morbi in rutrum ligula, in pharetra nibh. Curabitur condimentum diam vitae interdum bibendum. Maecenas risus mi, vulputate eu condimentum non, tincidunt quis ligula. Proin vitae finibus felis. Sed et condimentum mi. Nullam nisl dolor, mollis sit amet risus eget, fermentum pharetra dui. Pellentesque nec nulla massa. Cras ultricies, mi ac laoreet lobortis, dolor enim convallis lacus, vitae condimentum eros neque eget lorem.
+</p>
+<p>
+Morbi pellentesque dolor id augue molestie, tristique venenatis ante congue. Cras dignissim sem eu ipsum euismod, sit amet bibendum leo sollicitudin. Fusce in est sit amet libero tincidunt tempus. Quisque gravida dui sit amet nulla aliquam fermentum. Integer non ante at augue malesuada consequat at a sem. Maecenas sed tortor hendrerit, ullamcorper enim sit amet, facilisis purus. Nulla lacinia in neque egestas lobortis. In hac habitasse platea dictumst. Vivamus feugiat mattis felis congue mollis. Cras sit amet velit ante. Aenean at sodales felis. Aenean at imperdiet tortor. Quisque ullamcorper tortor nec augue mattis, a varius arcu suscipit. Donec suscipit, mi sit amet faucibus lacinia, dui ex ultricies risus, ut rhoncus mauris turpis ut neque.
+</p>
+<p>
+Pellentesque accumsan porttitor lorem sed gravida. Nullam egestas porta scelerisque. Aenean eros risus, pharetra eget ex nec, eleifend condimentum magna. Quisque tempor placerat dolor, in finibus quam facilisis interdum. Integer vestibulum sapien purus, eu pretium enim egestas id. Nam viverra interdum urna, vitae eleifend est dignissim imperdiet. Vestibulum eu congue neque. Curabitur bibendum venenatis risus vitae sodales. Vivamus tincidunt massa purus, id finibus eros maximus id. Nunc pulvinar blandit feugiat. Fusce porttitor ornare orci sit amet condimentum. Curabitur elit augue, sagittis ac nisi sit amet, luctus eleifend quam. Cras ultrices non risus id euismod.
+</p>
+<p>
+Duis ut auctor ipsum. Vivamus a metus porttitor, euismod lectus ultricies, lobortis felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec lobortis turpis. Etiam auctor, sapien ac hendrerit pharetra, lorem risus ultricies dolor, at facilisis metus sem a sem. Pellentesque fermentum, velit id euismod ornare, justo arcu tristique ligula, a tempor libero elit sed elit. Praesent non faucibus dui. Nam semper laoreet tellus et tempus. Nunc velit tortor, dignissim non enim at, finibus dignissim dui. Duis convallis a metus ac facilisis. Aliquam et nunc eget ante convallis bibendum.
+</p>
+<p>
+Fusce tincidunt orci quis suscipit consectetur. Nunc suscipit eget quam non sollicitudin. Mauris eu nibh massa. Aliquam eu condimentum sapien. In ante nibh, sodales vitae euismod at, ornare non est. Sed sed placerat velit. Quisque vulputate eget dui quis condimentum. Nunc viverra, diam at iaculis dictum, purus leo dictum purus, quis tempus nisi neque in purus. Suspendisse in molestie enim, vitae fermentum dui.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper, erat sit amet tincidunt euismod, massa mauris posuere dui, sed vulputate nisi lorem vel sem. Morbi in rutrum ligula, in pharetra nibh. Curabitur condimentum diam vitae interdum bibendum. Maecenas risus mi, vulputate eu condimentum non, tincidunt quis ligula. Proin vitae finibus felis. Sed et condimentum mi. Nullam nisl dolor, mollis sit amet risus eget, fermentum pharetra dui. Pellentesque nec nulla massa. Cras ultricies, mi ac laoreet lobortis, dolor enim convallis lacus, vitae condimentum eros neque eget lorem.
+</p>
+<p>
+Morbi pellentesque dolor id augue molestie, tristique venenatis ante congue. Cras dignissim sem eu ipsum euismod, sit amet bibendum leo sollicitudin. Fusce in est sit amet libero tincidunt tempus. Quisque gravida dui sit amet nulla aliquam fermentum. Integer non ante at augue malesuada consequat at a sem. Maecenas sed tortor hendrerit, ullamcorper enim sit amet, facilisis purus. Nulla lacinia in neque egestas lobortis. In hac habitasse platea dictumst. Vivamus feugiat mattis felis congue mollis. Cras sit amet velit ante. Aenean at sodales felis. Aenean at imperdiet tortor. Quisque ullamcorper tortor nec augue mattis, a varius arcu suscipit. Donec suscipit, mi sit amet faucibus lacinia, dui ex ultricies risus, ut rhoncus mauris turpis ut neque.
+</p>
+<p>
+Pellentesque accumsan porttitor lorem sed gravida. Nullam egestas porta scelerisque. Aenean eros risus, pharetra eget ex nec, eleifend condimentum magna. Quisque tempor placerat dolor, in finibus quam facilisis interdum. Integer vestibulum sapien purus, eu pretium enim egestas id. Nam viverra interdum urna, vitae eleifend est dignissim imperdiet. Vestibulum eu congue neque. Curabitur bibendum venenatis risus vitae sodales. Vivamus tincidunt massa purus, id finibus eros maximus id. Nunc pulvinar blandit feugiat. Fusce porttitor ornare orci sit amet condimentum. Curabitur elit augue, sagittis ac nisi sit amet, luctus eleifend quam. Cras ultrices non risus id euismod.
+</p>
+<p>
+Duis ut auctor ipsum. Vivamus a metus porttitor, euismod lectus ultricies, lobortis felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec lobortis turpis. Etiam auctor, sapien ac hendrerit pharetra, lorem risus ultricies dolor, at facilisis metus sem a sem. Pellentesque fermentum, velit id euismod ornare, justo arcu tristique ligula, a tempor libero elit sed elit. Praesent non faucibus dui. Nam semper laoreet tellus et tempus. Nunc velit tortor, dignissim non enim at, finibus dignissim dui. Duis convallis a metus ac facilisis. Aliquam et nunc eget ante convallis bibendum.
+</p>
+<p>
+Fusce tincidunt orci quis suscipit consectetur. Nunc suscipit eget quam non sollicitudin. Mauris eu nibh massa. Aliquam eu condimentum sapien. In ante nibh, sodales vitae euismod at, ornare non est. Sed sed placerat velit. Quisque vulputate eget dui quis condimentum. Nunc viverra, diam at iaculis dictum, purus leo dictum purus, quis tempus nisi neque in purus. Suspendisse in molestie enim, vitae fermentum dui.
+</p>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="sidebar">
+<h2>Sidebar</h2>
+<ul>
+<li><a href='#' title='About'>About</a></li>
+<li><a href='#' title='Contact'>Contact</a></li>
+<li><a href='#' title='Privacy'>Privacy</a></li>
+<li><a href='#' title='Sitemap'>Sitemap</a></li>
+<li><a href='#' title='Pasang Iklan'>Pasang Iklan</a></li>
+</ul>
+<div class="lazyloadimg">
+<!-- <picture>
+ <source srcset='https://4.bp.blogspot.com/-1IXM0nq9Y-c/VlkMYmQsRII/AAAAAAAAj38/27BU80myUrM/s1600-rw/atelier-reseau-internet-monde.jpg' type='image/webp'/>
+  <source srcset='https://4.bp.blogspot.com/-1IXM0nq9Y-c/VlkMYmQsRII/AAAAAAAAj38/27BU80myUrM/s1600/atelier-reseau-internet-monde.jpg' type='image/jpg'/>
+  <img alt='Test Postingan' height='398' src='https://4.bp.blogspot.com/-1IXM0nq9Y-c/VlkMYmQsRII/AAAAAAAAj38/27BU80myUrM/s1600/atelier-reseau-internet-monde.jpg' title='Test Postingan' width='600'/>
+  </picture> -->
+</div>
+<div class="lazyloadimg">
+<!-- <picture>
+ <source srcset='https://3.bp.blogspot.com/-yXaRVSYV45E/WgWOQZ6gcyI/AAAAAAAAt4w/OK-g1RYUEsooN54D20pr_hDPdc13HNRKQCLcBGAs/s1600-rw/Screenshot_101.png' type='image/webp'/>
+  <source srcset='https://3.bp.blogspot.com/-yXaRVSYV45E/WgWOQZ6gcyI/AAAAAAAAt4w/OK-g1RYUEsooN54D20pr_hDPdc13HNRKQCLcBGAs/s1600/Screenshot_101.png' type='image/jpg'/>
+  <img alt='Test Postingan' height='358' src='https://3.bp.blogspot.com/-yXaRVSYV45E/WgWOQZ6gcyI/AAAAAAAAt4w/OK-g1RYUEsooN54D20pr_hDPdc13HNRKQCLcBGAs/s1600/Screenshot_101.png' title='Test Postingan' width='628'/>
+  </picture> -->
+</div>
+<div class="lazyloadimg">
+<!-- <picture>
+ <source srcset='https://3.bp.blogspot.com/-EHqSlE0dhF8/Wtw5sb0LLSI/AAAAAAAAxFY/3l-fKXys1cos85hEDllbJh89kf-Fn1x5QCLcBGAs/s1600-rw/google-photos.jpg' type='image/webp'/>
+  <source srcset='https://3.bp.blogspot.com/-EHqSlE0dhF8/Wtw5sb0LLSI/AAAAAAAAxFY/3l-fKXys1cos85hEDllbJh89kf-Fn1x5QCLcBGAs/s1600/google-photos.jpg' type='image/jpg'/>
+  <img alt='Test Postingan' height='600' src='https://3.bp.blogspot.com/-EHqSlE0dhF8/Wtw5sb0LLSI/AAAAAAAAxFY/3l-fKXys1cos85hEDllbJh89kf-Fn1x5QCLcBGAs/s1600/google-photos.jpg' title='Test Postingan' width='1000'/>
+  </picture> -->
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<footer>
+<div class='content-wrapper'>
+&#169;2019 Kompi Ajaib
+</div>
+</footer>
+<script>
+//<![CDATA[
+function init() {
+var x = document.querySelectorAll(".lazyloadimg");
+var i;
+for (i = 0; i < x.length; i++) {
+    x[i].innerHTML = x[i].innerHTML.replace('<!--','').replace('-->','');
+}
+}
+window.onload = init;
+
+window.addEventListener("scroll", myFunction);
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  if (winScroll != 0) {
+  document.getElementById("toggle-label-title").style.display = "none"
+  } else {
+	  document.getElementById("toggle-label-title").style.display = "flex"
+  }
+}
+//]]>
+</script>
+</body>
+</html>
